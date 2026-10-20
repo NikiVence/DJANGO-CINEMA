@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% block title %}Статистика{% endblock %}
+{% block content %}
+<p class="eyebrow">Кино в цифрах</p><h1>Статистика показов</h1><p class="intro">Всего сеансов: <strong>{{ total }}</strong>. Сравните количество показов и проданных билетов по времени суток.</p>
+<form method="get" class="filters compact" action="{% url 'sessions:statistics' %}"><label>Минимум сеансов в группе<input type="number" name="minimum" min="1" max="1000" value="{{ minimum }}"></label><button class="button" type="submit">Обновить</button></form>
+<p class="muted">Показаны типы, у которых не менее {{ minimum }} сеансов.</p>
+<div class="table-wrap"><table><thead><tr><th scope="col">Тип сеанса</th><th scope="col">Количество сеансов</th><th scope="col">Продано билетов</th></tr></thead>
+<tbody>{% for row in statistics %}<tr><td>{{ row.show_type|capfirst }}</td><td>{{ row.session_count }}</td><td>{{ row.tickets_total }}</td></tr>{% empty %}<tr><td colspan="3" class="empty">Нет типов сеансов с таким количеством показов. Уменьшите порог.</td></tr>{% endfor %}</tbody></table></div>
+{% endblock %}

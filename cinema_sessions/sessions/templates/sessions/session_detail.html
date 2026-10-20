@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block title %}{{ session.title }}{% endblock %}
+{% block content %}
+<a class="text-link back" href="{% url 'sessions:list' %}">← Все сеансы</a>
+<section class="detail">
+<div class="detail-art" aria-hidden="true"><span>КАДР / БОЛЬШОЙ ЭКРАН</span><b>◉</b><strong>{{ session.show_date|date:"H:i" }}</strong></div>
+<div><p class="eyebrow">{{ session.show_type|upper }} СЕАНС</p><h1>{{ session.title }}</h1>
+{% include 'sessions/includes/status.html' %}
+<dl><div><dt>Дата показа</dt><dd>{{ session.show_date|date:"d.m.Y" }}</dd></div><div><dt>Начало</dt><dd>{{ session.show_date|date:"H:i" }} МСК</dd></div>
+<div><dt>Продолжительность</dt><dd>{{ session.duration }} мин</dd></div><div><dt>Продано билетов</dt><dd>{{ session.tickets }}</dd></div>
+<div><dt>Зал</dt><dd>{{ session.hall_name|default:"Зал не указан" }}</dd></div><div><dt>Вместимость</dt><dd>{{ session.capacity }} мест</dd></div><div><dt>Тип зала</dt><dd>{{ session.hall_type }}</dd></div></dl>
+<button class="button secondary" type="button" data-toggle="visit-info" aria-controls="visit-info" aria-expanded="false" hidden>Советы перед посещением</button>
+<div id="visit-info" class="notice"><p>Приходите за 15 минут до начала, чтобы спокойно найти свой зал. Время сеансов указано по Москве. Количество билетов в расписании — уже проданные билеты.</p></div>
+</div></section>
+{% endblock %}

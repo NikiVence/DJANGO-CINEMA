@@ -1,0 +1,3 @@
+{% extends 'base.html' %}
+{% block title %}Страница не найдена{% endblock %}
+{% block content %}<section class="empty error-page"><p class="eyebrow">404 / За кадром</p><h1>Здесь пока нет истории</h1><p>Страница или сеанс не найдены. Выберите другой показ в расписании.</p><a class="button" href="{% url 'sessions:list' %}">К сеансам</a></section>{% endblock %}

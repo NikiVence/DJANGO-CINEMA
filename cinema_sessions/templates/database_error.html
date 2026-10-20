@@ -1,0 +1,3 @@
+{% extends 'base.html' %}
+{% block title %}Данные временно недоступны{% endblock %}
+{% block content %}<section class="empty error-page" role="alert"><p class="eyebrow">Небольшой антракт</p><h1>Данные временно недоступны</h1><p>Не удалось загрузить расписание. Попробуйте обновить страницу позже.</p><a class="button" href="{% url 'homepage:home' %}">На главную</a></section>{% endblock %}

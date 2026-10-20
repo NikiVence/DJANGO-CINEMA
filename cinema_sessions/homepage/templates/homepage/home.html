@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block title %}Главная{% endblock %}
+{% block content %}
+<section class="hero">
+  <div><p class="eyebrow">Ваш следующий киносеанс</p><h1>Время<br>большого кино<span>.</span></h1>
+  <p class="intro">Любимые истории на большом экране. Смотрите расписание, выбирайте зал и находите свой сеанс.</p>
+  <div class="actions"><a class="button" href="{% url 'sessions:list' %}">Выбрать сеанс ↗</a><a class="button secondary" href="{% url 'halls:list' %}">Наши залы</a></div></div>
+  <div class="hero-art" aria-hidden="true"><div class="film">КАДР<span>СВЕТ. КАМЕРА.<br>ВАШ ВЕЧЕР.</span><b>▶</b></div></div>
+</section>
+<div class="section-heading"><div><p class="eyebrow">Расписание</p><h2>На экране</h2></div><p>Всего сеансов: <strong>{{ total }}</strong></p></div>
+<div class="cards">{% for session in sessions %}{% include 'sessions/includes/session_card.html' %}{% empty %}<p class="empty">Сеансов пока нет. Загляните позже.</p>{% endfor %}</div>
+{% endblock %}

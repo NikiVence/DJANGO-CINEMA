@@ -1,0 +1,29 @@
+{% load static %}
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}Кинопоказы{% endblock %} · Кадр</title>
+  <link rel="icon" href="{% static 'img/logo.svg' %}" type="image/svg+xml">
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+  <script defer src="{% static 'js/main.js' %}"></script>
+</head>
+<body>
+  <a class="skip-link" href="#content">К содержимому</a>
+  <header class="header">
+    <a class="brand" href="{% url 'homepage:home' %}"><img src="{% static 'img/logo.png' %}" width="42" height="42" alt="">КАДР<span>кинопоказы</span></a>
+    <nav aria-label="Основная навигация">
+      <a href="{% url 'homepage:home' %}" {% if request.resolver_match.app_name == 'homepage' %}aria-current="page"{% endif %}>Главная</a>
+      <a href="{% url 'halls:list' %}" {% if request.resolver_match.app_name == 'halls' %}aria-current="page"{% endif %}>Залы</a>
+      <a href="{% url 'sessions:list' %}" {% if request.resolver_match.url_name == 'list' and request.resolver_match.app_name == 'sessions' or request.resolver_match.url_name == 'detail' %}aria-current="page"{% endif %}>Сеансы</a>
+      <a href="{% url 'sessions:statistics' %}" {% if request.resolver_match.url_name == 'statistics' %}aria-current="page"{% endif %}>Статистика</a>
+    </nav>
+  </header>
+  <main id="content">
+    {% if errors %}<div class="error" role="alert"><strong>Проверьте параметры</strong><ul>{% for error in errors %}<li>{{ error }}</li>{% endfor %}</ul></div>{% endif %}
+    {% block content %}{% endblock %}
+  </main>
+  <footer><span>КАДР / Кинопоказы</span><span>Хорошее кино начинается с выбора сеанса.</span></footer>
+</body>
+</html>

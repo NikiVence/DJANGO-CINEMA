@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% block title %}Залы{% endblock %}
+{% block content %}
+<p class="eyebrow">Пространство для кино</p><h1>Наши залы</h1><p class="intro">Большой экран, уютный свет и место для каждой истории.</p>
+<div class="cards halls">
+{% for hall in halls %}
+<article class="card"><div class="hall-art" aria-hidden="true"><span>ЭКРАН</span><div>▰ ▰ ▰ ▰ ▰<br>▰ ▰ ▰ ▰ ▰<br>▰ ▰ ▰ ▰ ▰</div></div><div class="card-body"><p class="eyebrow">{{ hall.hall_type|upper }}</p><h2>{{ hall.name|default:"Зал не указан" }}</h2><p><strong>{{ hall.capacity }}</strong> зрительских мест</p></div></article>
+{% empty %}<p class="empty">Залы пока не добавлены.</p>{% endfor %}
+</div>
+{% endblock %}

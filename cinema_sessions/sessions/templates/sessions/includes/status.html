@@ -1,0 +1,4 @@
+{% if session.status == 'запланирован' %}<span class="badge planned">Билеты в продаже</span>
+{% elif session.status == 'идёт' %}<span class="badge live">● Идёт показ</span>
+{% elif session.status == 'завершён' %}<span class="badge finished">Показ состоялся</span>
+{% else %}<span class="badge">{{ session.status }}</span>{% endif %}
